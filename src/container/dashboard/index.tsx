@@ -3,8 +3,8 @@ import React from "react";
 // styles
 // import { Container } from './styles';
 
-const Dashboard: React.FC = () => {
-	return <h1>Dashboard</h1>;
+const DashboardContainer: React.FC = () => {
+	return <h1>DashboardContainer</h1>;
 }
 
-export default Dashboard;
+export default DashboardContainer;

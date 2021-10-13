@@ -1,12 +1,12 @@
 import React from "react";
 
 // container
-import Dashboard from "../../container/dashboard";
+import DashboardContainer from "../../container/dashboard";
 
-const dashboard = () => {
+const ashboard = () => {
 	return (
-		<Dashboard />
+		<DashboardContainer />
 	);
 }
 
-export default dashboard;
+export default ashboard;
