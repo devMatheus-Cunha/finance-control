@@ -1,15 +1,22 @@
 import React from "react";
+import { ThemeProvider } from "styled-components"
+
+// view
+import Dashboard from "./view/dashboard";
 
 // global styles
 import CreateGlobalStyle from "./assets/styles/globalStyles";
-import Dashboard from "./view/dashboard";
+
+// themes
+import dark from "./assets/styles/themes/dark";
+// import light from "./assets/styles/themes/light";
 
 const App: React.FC = () => {
 	return (
-		<>
+		<ThemeProvider theme={dark}>
 			<Dashboard />
 			<CreateGlobalStyle />
-		</>
+		</ThemeProvider>
 	);
 }
 
