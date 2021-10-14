@@ -6,7 +6,7 @@ import { Container } from "./styles";
 const Aside: React.FC = () => {
 	return (
 		<Container>
-			Olá
+			Aside
 		</Container>
 	);
 }
