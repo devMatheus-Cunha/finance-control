@@ -1,7 +1,7 @@
 import React from "react";
 
 // container
-import Transactions from "../../container/transactions";
+import { Transactions } from "../../container/transactions";
 
 const transactions: React.FC = () => {
 	return (

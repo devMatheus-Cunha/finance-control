@@ -8,7 +8,10 @@ import Content from "../../templates/Content";
 // styles
 import { Grid } from "./styles";
 
-const DashboardContainer: React.FC = () => {
+// -------------------------------------------------
+// Export Function
+// -------------------------------------------------
+export const DashboardContainer: React.FC = () => {
 	return (
 		<Grid>
 			<MainHeader />
@@ -17,5 +20,3 @@ const DashboardContainer: React.FC = () => {
 		</Grid>
 	);
 }
-
-export default DashboardContainer;
