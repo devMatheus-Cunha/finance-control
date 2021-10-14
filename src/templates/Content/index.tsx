@@ -3,12 +3,12 @@ import React from "react";
 // styles
 import { Container } from "./styles";
 
-const Aside: React.FC = () => {
+const Content: React.FC = () => {
 	return (
 		<Container>
-			Olá
+			Content
 		</Container>
 	);
 }
 
-export default Aside;
+export default Content;
