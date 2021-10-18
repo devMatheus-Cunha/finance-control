@@ -38,12 +38,16 @@ export const MenuItemLink = styled.a`
 
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 5px;
 
   transition: opacity 0.3s;
   margin: 7px 0;
   
   &:hover{
     opacity: .7;
+  }
+
+  > svg{
+    font-size: 18px;
   }
 `;
