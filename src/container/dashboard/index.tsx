@@ -5,18 +5,25 @@ import Aside from "../../templates/Aside";
 import MainHeader from "../../templates/MainHeader";
 import Content from "../../templates/Content";
 
+// components
+import ContentHeader from "../../components/ContentHeader";
+
 // styles
-import { Grid } from "./styles";
+import { Container, Grid } from "./styles";
 
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
 export const DashboardContainer: React.FC = () => {
 	return (
-		<Grid>
-			<MainHeader />
-			<Aside />
-			<Content />
-		</Grid>
+		<Container>
+			<Grid>
+				<MainHeader />
+				<Aside />
+				<Content>
+					<ContentHeader title="Dashboard" />
+				</Content>
+			</Grid>
+		</Container>
 	);
-}
+};

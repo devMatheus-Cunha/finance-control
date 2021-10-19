@@ -3,6 +3,9 @@ import React from "react";
 // styles
 import { Container, ToggleLabel, ToggleSelector } from "./styles";
 
+// -------------------------------------------------
+// Export Function
+// -------------------------------------------------
 const Toggle = () => (
 	<Container>
 		<ToggleLabel>

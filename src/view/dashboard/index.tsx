@@ -3,8 +3,8 @@ import React from "react";
 // container
 import { DashboardContainer } from "../../container/dashboard";
 
-const ashboard = () => {
+const dashboard = () => {
 	return <DashboardContainer />;
 };
 
-export default ashboard;
+export default dashboard;
