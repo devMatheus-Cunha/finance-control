@@ -1,12 +1,12 @@
 import React from "react";
 
 // container
-import { Transactions } from "../../container/transactions";
+import { TransactionsContainer } from "../../container/transactions";
 
-const transactions: React.FC = () => {
+const Transactions: React.FC = () => {
 	return (
-		<Transactions />
+		<TransactionsContainer />
 	)
 }
 
-export default transactions;
+export default Transactions;
