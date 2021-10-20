@@ -6,7 +6,7 @@ import Content from "../templates/Content";
 import MainHeader from "../templates/MainHeader";
 
 // styles
-import { Grid } from "../container/shared/styles";
+import { Grid } from "./styles";
 
 // interfaces
 interface ILayout {
