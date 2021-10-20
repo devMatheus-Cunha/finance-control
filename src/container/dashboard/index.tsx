@@ -7,10 +7,11 @@ import Content from "../../templates/Content";
 
 // components
 import ContentHeader from "../../components/ContentHeader";
+import SelectInput from "../../components/SelectInput";
 
 // styles
-import { Container, Grid } from "./styles";
-import SelectInput from "../../components/SelectInput";
+import { Container } from "./styles";
+import { Grid } from "../shared/styles";
 
 // -------------------------------------------------
 // Export Function

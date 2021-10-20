@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components"
 
 // view
 import Dashboard from "./view/dashboard";
-import { TransactionsContainer } from "./container/transactions";
+import Transactionsfrom from "./view/transactions";
 
 // global styles
 import CreateGlobalStyle from "./assets/styles/globalStyles";
@@ -15,8 +15,8 @@ import dark from "./assets/styles/themes/dark";
 const App: React.FC = () => {
 	return (
 		<ThemeProvider theme={dark}>
-			<Dashboard />
-			<TransactionsContainer />
+			{/* <Dashboard /> */}
+			<Transactionsfrom />
 			<CreateGlobalStyle />
 		</ThemeProvider>
 	);
