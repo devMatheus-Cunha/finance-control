@@ -1,6 +1,9 @@
 import React from "react";
 import { ThemeProvider } from "styled-components"
 
+// layout
+import Layout from "./layout";
+
 // view
 import Dashboard from "./view/dashboard";
 import Transactionsfrom from "./view/transactions";
@@ -15,8 +18,10 @@ import dark from "./assets/styles/themes/dark";
 const App: React.FC = () => {
 	return (
 		<ThemeProvider theme={dark}>
-			{/* <Dashboard /> */}
-			<Transactionsfrom />
+			<Layout>
+				<Transactionsfrom />
+				{/* <Dashboard /> */}
+			</Layout>
 			<CreateGlobalStyle />
 		</ThemeProvider>
 	);
