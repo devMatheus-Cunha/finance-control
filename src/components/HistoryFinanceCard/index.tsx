@@ -8,7 +8,7 @@ interface IHistoryFinanceCardProps {
   tagColor?: string;
   title?: string;
   subtitle?: string;
-  amount?: string;
+  amount?: number;
 }
 
 const HistoryFinanceCard = ({
@@ -24,7 +24,13 @@ const HistoryFinanceCard = ({
 				<span>{title}</span>
 				<small>{subtitle}</small>
 			</div>
-			<h3>{amount}</h3>
+			<h3>
+				{new Intl.NumberFormat("pt-BR", {
+					style: "currency",
+					currency: "BRL",
+				}).format((amount?.toFixed(2) || 0) as number)}
+
+			</h3>
 		</Container>
 	)
 };
