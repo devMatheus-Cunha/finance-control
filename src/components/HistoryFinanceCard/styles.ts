@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.li`
-  background-color: ${({ color }) => color};
+  background-color: ${({ theme }) => theme.colors.tertiary};
   list-style: none;
   border-radius: 5px;
 

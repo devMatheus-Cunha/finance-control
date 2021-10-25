@@ -26,70 +26,60 @@ export const TransactionsContainer: React.FC = () => {
 			</ContentHeader>
 			<Content>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"
 					amount="123"
 				/>
 				<HistoryFinanceCard
-					cardColor="#313862"
 					tagColor="#E44C4E"
 					title="Conta de luz"
 					subtitle="17/02/2021"

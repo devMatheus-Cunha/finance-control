@@ -5,7 +5,6 @@ import { Container, Tag } from "./styles";
 
 // interface
 interface IHistoryFinanceCardProps {
-  cardColor?: string;
   tagColor?: string;
   title?: string;
   subtitle?: string;
@@ -13,14 +12,13 @@ interface IHistoryFinanceCardProps {
 }
 
 const HistoryFinanceCard = ({
-	cardColor,
 	tagColor,
 	title,
 	subtitle,
 	amount,
 }: IHistoryFinanceCardProps) => {
 	return (
-		<Container color={cardColor}>
+		<Container>
 			<Tag color={tagColor} />
 			<div>
 				<span>{title}</span>
