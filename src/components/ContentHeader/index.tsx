@@ -4,8 +4,10 @@ import { Container, TitleContainer, Controlers } from "./styles";
 
 // interface
 interface IContentHeaderProps {
-  title: string;
-  lineColor?: string;
+  titleConfig: {
+		title: string,
+		lineColor: string,
+	};
   children?: ReactNode;
 }
 
@@ -13,14 +15,13 @@ interface IContentHeaderProps {
 // Export Function
 // -------------------------------------------------
 const ContentHeader = ({
-	title,
+	titleConfig,
 	children,
-	lineColor,
 }: IContentHeaderProps) => {
 	return (
 		<Container>
-			<TitleContainer lineColor={lineColor}>
-				<h2>{title}</h2>
+			<TitleContainer lineColor={titleConfig.lineColor}>
+				<h2>{titleConfig.title}</h2>
 			</TitleContainer>
 			<Controlers>{children}</Controlers>
 		</Container>
