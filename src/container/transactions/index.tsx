@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useMemo } from "react";
 // components
 import HistoryFinanceCard from "../../components/HistoryFinanceCard";
 import ContentHeader from "../../components/ContentHeader";
@@ -10,10 +9,26 @@ import {
 	Container, Content, Filters, Button,
 } from "./styles";
 
+// interface
+interface ITransactionsContainer {
+  type: string;
+}
+
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-export const TransactionsContainer: React.FC = () => {
+export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
+	// hooks
+	const titleValidation = useMemo(() => {
+		return type === "entry-balance" ? {
+			title: "Entradas",
+			lineColor: "#4E41F0",
+		} : {
+			title: "Saídas",
+			lineColor: "#E44C4E",
+		};
+	}, [type]);
+
 	const months = [
 		{
 			value: 7,
@@ -46,22 +61,15 @@ export const TransactionsContainer: React.FC = () => {
 
 	return (
 		<Container>
-			<ContentHeader title="Saída" lineColor="#E44C4E">
+			<ContentHeader titleConfig={titleValidation}>
 				<SelectInput options={months} />
 				<SelectInput options={years} />
 			</ContentHeader>
 			<Filters>
-				<Button
-					type="button"
-					recurrent
-				>
+				<Button type="button" recurrent>
 					Recorrentes
-
 				</Button>
-				<Button
-					type="button"
-					eventual
-				>
+				<Button type="button" eventual>
 					Eventuais
 				</Button>
 			</Filters>

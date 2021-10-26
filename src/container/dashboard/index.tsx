@@ -19,7 +19,9 @@ export const DashboardContainer: React.FC = () => {
 	];
 	return (
 		<Container>
-			<ContentHeader title="Dashboard" lineColor="#F7931B">
+			<ContentHeader
+				titleConfig={{ title: "Dashboard", lineColor: "#F7931B" }}
+			>
 				<SelectInput options={options} />
 				<SelectInput options={options} />
 			</ContentHeader>
