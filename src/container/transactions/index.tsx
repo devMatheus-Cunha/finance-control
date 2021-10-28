@@ -1,8 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 // components
 import HistoryFinanceCard from "../../components/HistoryFinanceCard";
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
+
+// utils
+import expenses from "../../repositories/expenses";
+import gains from "../../repositories/gains";
 
 // styles
 import {
@@ -14,19 +18,32 @@ interface ITransactionsContainer {
   type: string;
 }
 
+interface IData {
+	id: string
+  title: string;
+  amountFormated: string;
+  frequency: string;
+  date: string;
+	tagColor: string
+}
+
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
 export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
-	// hooks
+	// states
+	const [data, setData] = useState<IData[]>([]);
+	// memo
 	const titleValidation = useMemo(() => {
-		return type === "entry-balance" ? {
-			title: "Entradas",
-			lineColor: "#4E41F0",
-		} : {
-			title: "Saídas",
-			lineColor: "#E44C4E",
-		};
+		return type === "entry-balance"
+			? {
+				title: "Entradas",
+				lineColor: "#4E41F0",
+			}
+			: {
+				title: "Saídas",
+				lineColor: "#E44C4E",
+			};
 	}, [type]);
 
 	const months = [
@@ -59,6 +76,26 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 		},
 	];
 
+	const listData = useMemo(() => {
+		const validationList = type === "entry-balance" ? gains : expenses;
+
+		const formated = validationList.map((item) => {
+			return {
+				id: String(Math.random() * data.length),
+				title: item.description,
+				amountFormated: item.amount,
+				frequency: item.frequency,
+				date: item.date,
+				tagColor: item.frequency === "recorrente" ? "#4E41F0" : "#E44C4E",
+			};
+		});
+		return formated
+	}, [data.length, type]);
+
+	useEffect(() => {
+		setData(listData);
+	}, [listData]);
+
 	return (
 		<Container>
 			<ContentHeader titleConfig={titleValidation}>
@@ -74,12 +111,19 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 				</Button>
 			</Filters>
 			<Content>
-				<HistoryFinanceCard
-					tagColor="#E44C4E"
-					title="Conta de luz"
-					subtitle="17/02/2021"
-					amount={103}
-				/>
+				{
+					data.map((data) => (
+						<>
+							<HistoryFinanceCard
+								key={data.id}
+								tagColor={data.tagColor}
+								title={data.title}
+								subtitle={data.date}
+								amount={data.amountFormated}
+							/>
+						</>
+					))
+				}
 			</Content>
 		</Container>
 	);

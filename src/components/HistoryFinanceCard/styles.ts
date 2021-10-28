@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.li`
   background-color: ${({ theme }) => theme.colors.tertiary};
   list-style: none;
-  border-radius: 5px;
+  border-radius: 10px;
 
   margin: 10px 0;
   padding: 12px;
@@ -23,14 +23,19 @@ export const Container = styled.li`
     transform: translateX(5px);
   }
 
-  > div{
+  > div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-     padding-left: 10px;
+    padding-left: 10px;
+
+    span {
+      font-weight: 500;
+      font-size: 20px;
+    }
   }
 
-  h3{
+  h3 {
     padding-right: 10px;
   }
 `;
@@ -42,5 +47,4 @@ export const Tag = styled.div`
 
   position: absolute;
   left: 0;
-
 `;
