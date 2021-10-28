@@ -22,8 +22,7 @@ export const DashboardContainer: React.FC = () => {
 			<ContentHeader
 				titleConfig={{ title: "Dashboard", lineColor: "#F7931B" }}
 			>
-				<SelectInput options={options} />
-				<SelectInput options={options} />
+				<SelectInput options={options} onChange={() => {}} />
 			</ContentHeader>
 		</Container>
 	);

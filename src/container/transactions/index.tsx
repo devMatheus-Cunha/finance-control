@@ -22,12 +22,12 @@ interface ITransactionsContainer {
 }
 
 interface IData {
-	id: string
+  id: string;
   title: string;
   amountFormated: string;
   frequency: string;
   date: string;
-	tagColor: string
+  tagColor: string;
 }
 
 // -------------------------------------------------
@@ -36,6 +36,13 @@ interface IData {
 export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	// states
 	const [data, setData] = useState<IData[]>([]);
+	const [monthSelected, setMonthSelected] = useState<string>(
+		String(new Date().getMonth() + 1),
+	);
+	const [yearSelected, setYearSelected] = useState<string>(
+		String(new Date().getFullYear()),
+	);
+
 	// memo
 	const titleValidation = useMemo(() => {
 		return type === "entry-balance"
@@ -49,7 +56,20 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			};
 	}, [type]);
 
+	// dropdownoptions
 	const months = [
+		{
+			value: 4,
+			label: "Abril",
+		},
+		{
+			value: 5,
+			label: "Maio",
+		},
+		{
+			value: 6,
+			label: "Junho",
+		},
 		{
 			value: 7,
 			label: "Julho",
@@ -61,6 +81,10 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 		{
 			value: 9,
 			label: "Setembro",
+		},
+		{
+			value: 10,
+			label: "Outubro",
 		},
 	];
 
@@ -82,18 +106,27 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	const listData = useMemo(() => {
 		const validationList = type === "entry-balance" ? gains : expenses;
 
-		const formated = validationList.map((item) => {
+		const formatedDateAndYear = validationList.filter((item) => {
+			const date = new Date(item.date);
+			const month = String(date.getMonth() + 1);
+			const year = String(date.getFullYear());
+
+			return month === monthSelected && year === yearSelected
+		})
+
+		const formatedMap = formatedDateAndYear.map((data) => {
 			return {
-				id: String(Math.random() * data.length),
-				title: item.description,
-				amountFormated: formatCurrency(Number(item.amount)),
-				frequency: item.frequency,
-				date: formatDate(item.date),
-				tagColor: item.frequency === "recorrente" ? "#4E41F0" : "#E44C4E",
-			};
-		});
-		return formated
-	}, [data.length, type]);
+				id: String(Math.random()),
+				title: data.description,
+				amountFormated: formatCurrency(Number(data.amount)),
+				frequency: data.frequency,
+				date: formatDate(data.date),
+				tagColor: data.frequency === "recorrente" ? "#4E41F0" : "#E44C4E",
+			}
+		})
+
+		return formatedMap
+	}, [monthSelected, type, yearSelected]);
 
 	useEffect(() => {
 		setData(listData);
@@ -102,8 +135,16 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	return (
 		<Container>
 			<ContentHeader titleConfig={titleValidation}>
-				<SelectInput options={months} />
-				<SelectInput options={years} />
+				<SelectInput
+					options={months}
+					onChange={(event) => setMonthSelected(event.target.value)}
+					defaultValue={monthSelected}
+				/>
+				<SelectInput
+					options={years}
+					onChange={(event) => setYearSelected(event.target.value)}
+					defaultValue={yearSelected}
+				/>
 			</ContentHeader>
 			<Filters>
 				<Button type="button" recurrent>
@@ -114,19 +155,17 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 				</Button>
 			</Filters>
 			<Content>
-				{
-					data.map((data) => (
-						<>
-							<HistoryFinanceCard
-								key={data.id}
-								tagColor={data.tagColor}
-								title={data.title}
-								subtitle={data.date}
-								amount={data.amountFormated}
-							/>
-						</>
-					))
-				}
+				{data.map((data) => (
+					<>
+						<HistoryFinanceCard
+							key={data.id}
+							tagColor={data.tagColor}
+							title={data.title}
+							subtitle={data.date}
+							amount={data.amountFormated}
+						/>
+					</>
+				))}
 			</Content>
 		</Container>
 	);
