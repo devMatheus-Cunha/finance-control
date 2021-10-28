@@ -24,15 +24,9 @@ const HistoryFinanceCard = ({
 				<span>{title}</span>
 				<small>{subtitle}</small>
 			</div>
-			<h3>
-				{new Intl.NumberFormat("pt-BR", {
-					style: "currency",
-					currency: "BRL",
-				}).format((amount || 0) as number)}
-
-			</h3>
+			<h3>{amount}</h3>
 		</Container>
-	)
+	);
 };
 
 export default HistoryFinanceCard;

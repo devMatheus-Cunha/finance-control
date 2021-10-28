@@ -4,9 +4,12 @@ import HistoryFinanceCard from "../../components/HistoryFinanceCard";
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
 
-// utils
+// repositories
 import expenses from "../../repositories/expenses";
 import gains from "../../repositories/gains";
+
+// utils
+import { formatCurrency, formatDate } from "../../utils/functions";
 
 // styles
 import {
@@ -83,9 +86,9 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			return {
 				id: String(Math.random() * data.length),
 				title: item.description,
-				amountFormated: item.amount,
+				amountFormated: formatCurrency(Number(item.amount)),
 				frequency: item.frequency,
-				date: item.date,
+				date: formatDate(item.date),
 				tagColor: item.frequency === "recorrente" ? "#4E41F0" : "#E44C4E",
 			};
 		});
