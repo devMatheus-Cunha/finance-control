@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { uuid } from "uuidv4";
+
 // components
 import HistoryFinanceCard from "../../components/HistoryFinanceCard";
 import ContentHeader from "../../components/ContentHeader";
@@ -10,6 +12,7 @@ import gains from "../../repositories/gains";
 
 // utils
 import { formatCurrency, formatDate } from "../../utils/functions";
+import listOfMonths from "../../utils/months";
 
 // styles
 import {
@@ -36,12 +39,8 @@ interface IData {
 export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	// states
 	const [data, setData] = useState<IData[]>([]);
-	const [monthSelected, setMonthSelected] = useState<string>(
-		String(new Date().getMonth() + 1),
-	);
-	const [yearSelected, setYearSelected] = useState<string>(
-		String(new Date().getFullYear()),
-	);
+	const [monthSelected, setMonthSelected] = useState<any>("10");
+	const [yearSelected, setYearSelected] = useState<any>("2021");
 
 	// memo
 	const titleValidation = useMemo(() => {
@@ -56,77 +55,61 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			};
 	}, [type]);
 
-	// dropdownoptions
-	const months = [
-		{
-			value: 4,
-			label: "Abril",
-		},
-		{
-			value: 5,
-			label: "Maio",
-		},
-		{
-			value: 6,
-			label: "Junho",
-		},
-		{
-			value: 7,
-			label: "Julho",
-		},
-		{
-			value: 8,
-			label: "Agosto",
-		},
-		{
-			value: 9,
-			label: "Setembro",
-		},
-		{
-			value: 10,
-			label: "Outubro",
-		},
-	];
-
-	const years = [
-		{
-			value: 2021,
-			label: 2021,
-		},
-		{
-			value: 2020,
-			label: 2020,
-		},
-		{
-			value: 2019,
-			label: 2019,
-		},
-	];
+	const typePageData = useMemo(() => {
+		return type === "entry-balance" ? gains : expenses;
+	}, [type]);
 
 	const listData = useMemo(() => {
-		const validationList = type === "entry-balance" ? gains : expenses;
-
-		const formatedDateAndYear = validationList.filter((item) => {
+		const formatedDateAndYear = typePageData.filter((item) => {
 			const date = new Date(item.date);
 			const month = String(date.getMonth() + 1);
 			const year = String(date.getFullYear());
 
-			return month === monthSelected && year === yearSelected
-		})
+			return month === monthSelected && year === yearSelected;
+		});
 
 		const formatedMap = formatedDateAndYear.map((data) => {
 			return {
-				id: String(Math.random()),
+				id: uuid(),
 				title: data.description,
 				amountFormated: formatCurrency(Number(data.amount)),
 				frequency: data.frequency,
 				date: formatDate(data.date),
 				tagColor: data.frequency === "recorrente" ? "#4E41F0" : "#E44C4E",
-			}
-		})
+			};
+		});
+		return formatedMap;
+	}, [monthSelected, typePageData, yearSelected]);
 
-		return formatedMap
-	}, [monthSelected, type, yearSelected]);
+	// dropdownoptions
+	const years = useMemo(() => {
+		const uniqueYears: number[] = [];
+
+		typePageData.forEach((item) => {
+			const date = new Date(item.date);
+			const year = date.getFullYear();
+
+			if (!uniqueYears.includes(year)) {
+				uniqueYears.push(year);
+			}
+		});
+
+		return uniqueYears.map((year) => {
+			return {
+				value: year,
+				label: year,
+			};
+		});
+	}, [typePageData]);
+
+	const months = useMemo(() => {
+		return listOfMonths.map((month, index) => {
+			return {
+				value: index + 1,
+				label: month,
+			};
+		});
+	}, []);
 
 	useEffect(() => {
 		setData(listData);
@@ -138,12 +121,10 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 				<SelectInput
 					options={months}
 					onChange={(event) => setMonthSelected(event.target.value)}
-					defaultValue={monthSelected}
 				/>
 				<SelectInput
 					options={years}
 					onChange={(event) => setYearSelected(event.target.value)}
-					defaultValue={yearSelected}
 				/>
 			</ContentHeader>
 			<Filters>
