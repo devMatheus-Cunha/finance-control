@@ -39,8 +39,12 @@ interface IData {
 export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	// states
 	const [data, setData] = useState<IData[]>([]);
-	const [monthSelected, setMonthSelected] = useState<any>("10");
-	const [yearSelected, setYearSelected] = useState<any>("2021");
+	const [monthSelected, setMonthSelected] = useState("10");
+	const [yearSelected, setYearSelected] = useState("2021");
+	const [selectedFrequency, setSelectedFrequency] = useState([
+		"recorrentes",
+		"eventuais",
+	]);
 
 	// memo
 	const titleValidation = useMemo(() => {
@@ -111,6 +115,19 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 		});
 	}, []);
 
+	const handleFrenquencyClick = (frequency: string) => {
+		const alreadySelected = selectedFrequency.findIndex(
+			(item) => item === frequency,
+		);
+
+		if (alreadySelected >= 0) {
+			const filtered = selectedFrequency.filter((item) => item !== frequency);
+			setSelectedFrequency(filtered);
+		} else {
+			setSelectedFrequency((prev) => [...prev, frequency]);
+		}
+	};
+
 	useEffect(() => {
 		setData(listData);
 	}, [listData]);
@@ -128,10 +145,20 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 				/>
 			</ContentHeader>
 			<Filters>
-				<Button type="button" recurrent>
+				<Button
+					type="button"
+					recurrent
+					onClick={() => handleFrenquencyClick("recorrentes")}
+					styleSelected={!!selectedFrequency.includes("recorrentes")}
+				>
 					Recorrentes
 				</Button>
-				<Button type="button" eventual>
+				<Button
+					type="button"
+					eventual
+					styleSelected={!!selectedFrequency.includes("eventuais")}
+					onClick={() => handleFrenquencyClick("eventuais")}
+				>
 					Eventuais
 				</Button>
 			</Filters>

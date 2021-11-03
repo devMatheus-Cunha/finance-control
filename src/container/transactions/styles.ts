@@ -3,6 +3,7 @@ import styled from "styled-components";
 type PropsButton = {
   recurrent?: boolean;
   eventual?: boolean;
+  styleSelected?: boolean
 };
 
 export const Container = styled.div``;
@@ -26,6 +27,8 @@ export const Button = styled.button<PropsButton>`
 
   transition: opacity 0.3s;
 
+  opacity: ${({ styleSelected }) => (styleSelected ? 1 : 0.5)};
+  
   &:hover {
     opacity: 0.7;
   }
