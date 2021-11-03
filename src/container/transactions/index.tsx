@@ -42,8 +42,8 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	const [monthSelected, setMonthSelected] = useState("10");
 	const [yearSelected, setYearSelected] = useState("2021");
 	const [selectedFrequency, setSelectedFrequency] = useState([
-		"recorrentes",
-		"eventuais",
+		"recorrente",
+		"eventual",
 	]);
 
 	// memo
@@ -69,7 +69,11 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			const month = String(date.getMonth() + 1);
 			const year = String(date.getFullYear());
 
-			return month === monthSelected && year === yearSelected;
+			return (
+				month === monthSelected
+        && year === yearSelected
+        && selectedFrequency.includes(item.frequency)
+			);
 		});
 
 		const formatedMap = formatedDateAndYear.map((data) => {
@@ -83,7 +87,7 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			};
 		});
 		return formatedMap;
-	}, [monthSelected, typePageData, yearSelected]);
+	}, [monthSelected, selectedFrequency, typePageData, yearSelected]);
 
 	// dropdownoptions
 	const years = useMemo(() => {
@@ -148,16 +152,16 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 				<Button
 					type="button"
 					recurrent
-					onClick={() => handleFrenquencyClick("recorrentes")}
-					styleSelected={!!selectedFrequency.includes("recorrentes")}
+					onClick={() => handleFrenquencyClick("recorrente")}
+					styleSelected={!!selectedFrequency.includes("recorrente")}
 				>
 					Recorrentes
 				</Button>
 				<Button
 					type="button"
 					eventual
-					styleSelected={!!selectedFrequency.includes("eventuais")}
-					onClick={() => handleFrenquencyClick("eventuais")}
+					styleSelected={!!selectedFrequency.includes("eventual")}
+					onClick={() => handleFrenquencyClick("eventual")}
 				>
 					Eventuais
 				</Button>
