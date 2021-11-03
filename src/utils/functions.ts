@@ -13,9 +13,9 @@ export const formatDate = (date: string): string => {
     	? dateFormated.getDate() + 1
     	: `0${dateFormated.getDate() + 1}`;
 
-	const month = dateFormated.getMonth() > 9
-    	? dateFormated.getMonth() + 1
-    	: `0${dateFormated.getMonth() + 1}`;
+	const month = dateFormated.getMonth() + 1 <= 9
+    	? `0${dateFormated.getMonth() + 1}`
+    	: dateFormated.getMonth() + 1;
 
 	const year = dateFormated.getFullYear();
 

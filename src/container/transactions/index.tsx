@@ -28,8 +28,8 @@ import {
 export const TransactionsContainer = ({ type: movimentType }: ITransactionsContainer) => {
 	// states
 	const [data, setData] = useState<IData[]>([]);
-	const [monthSelected, setMonthSelected] = useState("10");
-	const [yearSelected, setYearSelected] = useState("2021");
+	const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth());
+	const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
 	const [frequencyFilterSelected, setFrequencyFilterSelected] = useState([
 		"recorrente",
 		"eventual",
@@ -55,8 +55,8 @@ export const TransactionsContainer = ({ type: movimentType }: ITransactionsConta
 	const listData = useMemo(() => {
 		const formatedDateAndYear = typePageData.filter((item) => {
 			const date = new Date(item.date);
-			const month = String(date.getMonth() + 1);
-			const year = String(date.getFullYear());
+			const month = date.getMonth() + 1;
+			const year = date.getFullYear();
 
 			return (
 				month === monthSelected
@@ -130,11 +130,11 @@ export const TransactionsContainer = ({ type: movimentType }: ITransactionsConta
 			<ContentHeader titleConfig={titleValidation}>
 				<SelectInput
 					options={months}
-					onChange={(event) => setMonthSelected(event.target.value)}
+					onChange={(event) => setMonthSelected(Number(event.target.value))}
 				/>
 				<SelectInput
 					options={years}
-					onChange={(event) => setYearSelected(event.target.value)}
+					onChange={(event) => setYearSelected(Number(event.target.value))}
 				/>
 			</ContentHeader>
 			<Filters>
