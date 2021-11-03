@@ -14,41 +14,30 @@ import gains from "../../repositories/gains";
 import { formatCurrency, formatDate } from "../../utils/functions";
 import listOfMonths from "../../utils/months";
 
+// interface
+import { IData, ITransactionsContainer } from "./interface";
+
 // styles
 import {
 	Container, Content, Filters, Button,
 } from "./styles";
 
-// interface
-interface ITransactionsContainer {
-  type: string;
-}
-
-interface IData {
-  id: string;
-  title: string;
-  amountFormated: string;
-  frequency: string;
-  date: string;
-  tagColor: string;
-}
-
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
+export const TransactionsContainer = ({ type: movimentType }: ITransactionsContainer) => {
 	// states
 	const [data, setData] = useState<IData[]>([]);
 	const [monthSelected, setMonthSelected] = useState("10");
 	const [yearSelected, setYearSelected] = useState("2021");
-	const [selectedFrequency, setSelectedFrequency] = useState([
+	const [frequencyFilterSelected, setFrequencyFilterSelected] = useState([
 		"recorrente",
 		"eventual",
 	]);
 
 	// memo
 	const titleValidation = useMemo(() => {
-		return type === "entry-balance"
+		return movimentType === "entry-balance"
 			? {
 				title: "Entradas",
 				lineColor: "#4E41F0",
@@ -57,11 +46,11 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 				title: "Saídas",
 				lineColor: "#E44C4E",
 			};
-	}, [type]);
+	}, [movimentType]);
 
 	const typePageData = useMemo(() => {
-		return type === "entry-balance" ? gains : expenses;
-	}, [type]);
+		return movimentType === "entry-balance" ? gains : expenses;
+	}, [movimentType]);
 
 	const listData = useMemo(() => {
 		const formatedDateAndYear = typePageData.filter((item) => {
@@ -72,7 +61,7 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			return (
 				month === monthSelected
         && year === yearSelected
-        && selectedFrequency.includes(item.frequency)
+        && frequencyFilterSelected.includes(item.frequency)
 			);
 		});
 
@@ -87,7 +76,7 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 			};
 		});
 		return formatedMap;
-	}, [monthSelected, selectedFrequency, typePageData, yearSelected]);
+	}, [monthSelected, frequencyFilterSelected, typePageData, yearSelected]);
 
 	// dropdownoptions
 	const years = useMemo(() => {
@@ -120,15 +109,15 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 	}, []);
 
 	const handleFrenquencyClick = (frequency: string) => {
-		const alreadySelected = selectedFrequency.findIndex(
+		const alreadySelected = frequencyFilterSelected.findIndex(
 			(item) => item === frequency,
 		);
 
 		if (alreadySelected >= 0) {
-			const filtered = selectedFrequency.filter((item) => item !== frequency);
-			setSelectedFrequency(filtered);
+			const filtered = frequencyFilterSelected.filter((item) => item !== frequency);
+			setFrequencyFilterSelected(filtered);
 		} else {
-			setSelectedFrequency((prev) => [...prev, frequency]);
+			setFrequencyFilterSelected((prev) => [...prev, frequency]);
 		}
 	};
 
@@ -153,17 +142,17 @@ export const TransactionsContainer = ({ type }: ITransactionsContainer) => {
 					type="button"
 					recurrent
 					onClick={() => handleFrenquencyClick("recorrente")}
-					styleSelected={!!selectedFrequency.includes("recorrente")}
+					styleSelected={!!frequencyFilterSelected.includes("recorrente")}
 				>
-					Recorrentes
+					Recorrente
 				</Button>
 				<Button
 					type="button"
 					eventual
-					styleSelected={!!selectedFrequency.includes("eventual")}
+					styleSelected={!!frequencyFilterSelected.includes("eventual")}
 					onClick={() => handleFrenquencyClick("eventual")}
 				>
-					Eventuais
+					Event
 				</Button>
 			</Filters>
 			<Content>
