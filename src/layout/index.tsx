@@ -12,7 +12,9 @@ import { Grid } from "./styles";
 interface ILayout {
   children : ReactNode
 }
-
+// -------------------------------------------------
+// Export Function
+// -------------------------------------------------
 const Layout = ({ children }: ILayout) => {
 	return (
 		<Grid>

@@ -11,7 +11,9 @@ interface IRouteParams {
     };
   };
 }
-
+// -------------------------------------------------
+// Export Function
+// -------------------------------------------------
 const Transactions = ({ match }: IRouteParams) => {
 	// get params
 	const { type } = match.params;

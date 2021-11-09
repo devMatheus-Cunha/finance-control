@@ -12,6 +12,9 @@ interface IRouteParams {
   };
 }
 
+// -------------------------------------------------
+// Export Function
+// -------------------------------------------------
 const dashboard = ({ match }: IRouteParams) => {
 	// get params
 	const { type } = match.params;
