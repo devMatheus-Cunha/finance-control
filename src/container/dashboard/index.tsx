@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import ContentHeader from "../../components/ContentHeader";
 import WalletBox from "../../components/WalletBox";
 import SelectInput from "../../components/SelectInput";
+import MessageBox from "../../components/MessageBox";
 
 // utils
 import listOfMonths from "../../utils/months";
@@ -14,6 +15,10 @@ import gains from "../../repositories/gains";
 
 // interfaces
 import { ITransactionsContainer } from "../transactions/interface";
+
+// images
+import emojiHappyImg from "../../assets/img/emoji-happy.svg";
+import emojiSadImg from "../../assets/img/emoji-sad.svg";
 
 // styles
 import { Container, Content } from "./styles";
@@ -98,6 +103,12 @@ export const DashboardContainer = ({
 					title="saídas"
 					icon="arrowDown"
 					footerLabel="última movimentação em 18/07/2020 às 11h40"
+				/>
+				<MessageBox
+					title="Muito bem!"
+					description="Sua carteira está positiva!"
+					icon={emojiHappyImg}
+					footerText="Continue assim. Considere investir o seu saldo."
 				/>
 			</Content>
 		</Container>
