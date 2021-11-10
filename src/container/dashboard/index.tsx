@@ -70,6 +70,51 @@ export const DashboardContainer = ({
 			};
 		});
 	}, []);
+
+	const totalExpenseive = useMemo(() => {
+		let total = 0
+
+		expenses.forEach((item) => {
+			const date = new Date(item.date)
+			const year = date.getFullYear()
+			const month = date.getMonth() + 1
+
+			if (month === monthSelected && year === yearSelected) {
+				try {
+					total += Number(item.amount)
+				} catch {
+					throw new Error("Invalid Amout");
+				}
+			}
+		})
+
+		return total
+	}, [monthSelected, yearSelected])
+
+	const totalGains = useMemo(() => {
+		let total = 0
+
+		gains.forEach((item) => {
+			const date = new Date(item.date)
+			const year = date.getFullYear()
+			const month = date.getMonth() + 1
+
+			if (month === monthSelected && year === yearSelected) {
+				try {
+					total += Number(item.amount)
+				} catch {
+					throw new Error("Invalid Amout");
+				}
+			}
+		})
+
+		return total
+	}, [monthSelected, yearSelected])
+
+	const totalBalance = useMemo(() => {
+		return totalGains - totalExpenseive
+	}, [totalExpenseive, totalGains])
+
 	return (
 		<Container>
 			<ContentHeader titleConfig={{ title: "Dashboard", lineColor: "#F7931B" }}>
@@ -86,20 +131,20 @@ export const DashboardContainer = ({
 				<WalletBox
 					title="saldo"
 					color="#4E41F0"
-					amount={4000}
+					amount={totalBalance}
 					icon="dolar"
 					footerLabel="atualizado com base nas entradas e saídas"
 				/>
 				<WalletBox
 					title="entradas"
-					amount={5000}
+					amount={totalGains}
 					color="#F7931B"
 					icon="arrowUp"
 					footerLabel="última movimentação em 18/07/2020 às 11h40"
 				/>
 				<WalletBox
 					color="#E44C4E"
-					amount={1000}
+					amount={totalExpenseive}
 					title="saídas"
 					icon="arrowDown"
 					footerLabel="última movimentação em 18/07/2020 às 11h40"
