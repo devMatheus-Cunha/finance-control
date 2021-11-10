@@ -6,7 +6,7 @@ import { Container } from "./styles";
 // interface
 interface IMessageBoxProps {
   title: string;
-  icon: string;
+  icon: any;
   description: string;
   footerText: string;
 }

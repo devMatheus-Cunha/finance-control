@@ -19,6 +19,7 @@ import { ITransactionsContainer } from "../transactions/interface";
 // images
 import emojiHappyImg from "../../assets/img/emoji-happy.svg";
 import emojiSadImg from "../../assets/img/emoji-sad.svg";
+import emojiThinkingImg from "../../assets/img/thinking.png";
 
 // styles
 import { Container, Content } from "./styles";
@@ -72,48 +73,74 @@ export const DashboardContainer = ({
 	}, []);
 
 	const totalExpenseive = useMemo(() => {
-		let total = 0
+		let total = 0;
 
 		expenses.forEach((item) => {
-			const date = new Date(item.date)
-			const year = date.getFullYear()
-			const month = date.getMonth() + 1
+			const date = new Date(item.date);
+			const year = date.getFullYear();
+			const month = date.getMonth() + 1;
 
 			if (month === monthSelected && year === yearSelected) {
 				try {
-					total += Number(item.amount)
+					total += Number(item.amount);
 				} catch {
 					throw new Error("Invalid Amout");
 				}
 			}
-		})
+		});
 
-		return total
-	}, [monthSelected, yearSelected])
+		return total;
+	}, [monthSelected, yearSelected]);
 
 	const totalGains = useMemo(() => {
-		let total = 0
+		let total = 0;
 
 		gains.forEach((item) => {
-			const date = new Date(item.date)
-			const year = date.getFullYear()
-			const month = date.getMonth() + 1
+			const date = new Date(item.date);
+			const year = date.getFullYear();
+			const month = date.getMonth() + 1;
 
 			if (month === monthSelected && year === yearSelected) {
 				try {
-					total += Number(item.amount)
+					total += Number(item.amount);
 				} catch {
 					throw new Error("Invalid Amout");
 				}
 			}
-		})
+		});
 
-		return total
-	}, [monthSelected, yearSelected])
+		return total;
+	}, [monthSelected, yearSelected]);
 
 	const totalBalance = useMemo(() => {
-		return totalGains - totalExpenseive
-	}, [totalExpenseive, totalGains])
+		return totalGains - totalExpenseive;
+	}, [totalExpenseive, totalGains]);
+
+	const message = useMemo(() => {
+		if (totalBalance < 0) {
+			return {
+				title: "Que triste!",
+				description: "Neste mês, você gastou mais do que deveria.",
+				icon: emojiSadImg,
+				footerText:
+          "Verifique seus gastos e tente cortar algumas coisas desnecessárias",
+			};
+		}
+		if (totalBalance > 0) {
+			return {
+				title: "Muito bem!",
+				description: "Sua carteira está positiva!",
+				icon: emojiHappyImg,
+				footerText: "Continue assim. Considere investir o seu saldo.",
+			};
+		}
+		return {
+			title: "Ufaaa!",
+			description: "Neste mês, você gastou a mesma coisa que ganhou.",
+			icon: emojiThinkingImg,
+			footerText: "Tenha cuidado. No proximo mês tente poupar seu dinheiro",
+		};
+	}, [totalBalance]);
 
 	return (
 		<Container>
@@ -150,10 +177,10 @@ export const DashboardContainer = ({
 					footerLabel="última movimentação em 18/07/2020 às 11h40"
 				/>
 				<MessageBox
-					title="Muito bem!"
-					description="Sua carteira está positiva!"
-					icon={emojiHappyImg}
-					footerText="Continue assim. Considere investir o seu saldo."
+					title={message.title}
+					description={message.description}
+					icon={message.icon}
+					footerText={message.footerText}
 				/>
 			</Content>
 		</Container>
