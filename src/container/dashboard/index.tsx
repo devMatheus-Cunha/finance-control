@@ -19,7 +19,7 @@ import { ITransactionsContainer } from "../transactions/interface";
 // images
 import emojiHappyImg from "../../assets/img/emoji-happy.svg";
 import emojiSadImg from "../../assets/img/emoji-sad.svg";
-import emojiThinkingImg from "../../assets/img/thinking.png";
+import emojiGrinningImg from "../../assets/img/grinning.svg";
 
 // styles
 import { Container, Content } from "./styles";
@@ -137,7 +137,7 @@ export const DashboardContainer = ({
 		return {
 			title: "Ufaaa!",
 			description: "Neste mês, você gastou a mesma coisa que ganhou.",
-			icon: emojiThinkingImg,
+			icon: emojiGrinningImg,
 			footerText: "Tenha cuidado. No proximo mês tente poupar seu dinheiro",
 		};
 	}, [totalBalance]);
