@@ -5,6 +5,7 @@ import ContentHeader from "../../components/ContentHeader";
 import WalletBox from "../../components/WalletBox";
 import SelectInput from "../../components/SelectInput";
 import MessageBox from "../../components/MessageBox";
+import PieChartComponent from "../../components/PieChart";
 
 // utils
 import listOfMonths from "../../utils/months";
@@ -182,6 +183,7 @@ export const DashboardContainer = ({
 					icon={message.icon}
 					footerText={message.footerText}
 				/>
+				<PieChartComponent />
 			</Content>
 		</Container>
 	);
