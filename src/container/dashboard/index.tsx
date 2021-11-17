@@ -73,7 +73,7 @@ export const DashboardContainer = ({
 		});
 	}, []);
 
-	const totalExpenseive = useMemo(() => {
+	const totalExpenses = useMemo(() => {
 		let total = 0;
 
 		expenses.forEach((item) => {
@@ -114,8 +114,8 @@ export const DashboardContainer = ({
 	}, [monthSelected, yearSelected]);
 
 	const totalBalance = useMemo(() => {
-		return totalGains - totalExpenseive;
-	}, [totalExpenseive, totalGains]);
+		return totalGains - totalExpenses;
+	}, [totalExpenses, totalGains]);
 
 	const message = useMemo(() => {
 		if (totalBalance < 0) {
@@ -142,6 +142,29 @@ export const DashboardContainer = ({
 			footerText: "Tenha cuidado. No proximo mês tente poupar seu dinheiro",
 		};
 	}, [totalBalance]);
+
+	const relationExpensesVersusGains = useMemo(() => {
+		const total = totalGains + totalExpenses;
+
+		const percentGains = (totalGains / total) * 100;
+		const percentExpenses = (totalExpenses / total) * 100;
+
+		const data = [
+			{
+				name: "Entradas",
+				totalValue: totalGains,
+				color: "#F7931B",
+				percent: Number(percentGains.toFixed(1)),
+			},
+			{
+				name: "Saídas",
+				totalValue: totalExpenses,
+				color: "#E44C4E",
+				percent: Number(percentExpenses.toFixed(1)),
+			},
+		];
+		return data
+	}, [totalExpenses, totalGains]);
 
 	return (
 		<Container>
@@ -172,7 +195,7 @@ export const DashboardContainer = ({
 				/>
 				<WalletBox
 					color="#E44C4E"
-					amount={totalExpenseive}
+					amount={totalExpenses}
 					title="saídas"
 					icon="arrowDown"
 					footerLabel="última movimentação em 18/07/2020 às 11h40"
@@ -183,7 +206,7 @@ export const DashboardContainer = ({
 					icon={message.icon}
 					footerText={message.footerText}
 				/>
-				<PieChartComponent />
+				<PieChartComponent data={relationExpensesVersusGains} />
 			</Content>
 		</Container>
 	);
