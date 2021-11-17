@@ -10,14 +10,23 @@ import {
 	Legend,
 } from "./styles";
 
-const PieChartComponent = ({ data } : any) => {
+interface IPieChartComponent {
+   data: {
+		name: string;
+    color: string;
+    percent: number;
+    totalValue: number;
+	 }[]
+}
+
+const PieChartComponent = ({ data } : IPieChartComponent) => {
 	return (
 		<Container>
 			<SideLeft>
 				<h2>Relação</h2>
 				<LegendContainer>
 					{
-						data.map((indicator: any) => (
+						data.map((indicator) => (
 							<>
 								<Legend key={indicator.name} color={indicator.color}>
 									<div>
