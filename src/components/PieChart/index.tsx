@@ -1,5 +1,7 @@
 import React from "react";
-import { PieChart, Pie, ResponsiveContainer } from "recharts";
+import {
+	PieChart, Pie, ResponsiveContainer, Cell,
+} from "recharts";
 
 // styles
 import {
@@ -31,7 +33,6 @@ const PieChartComponent = ({ data } : IPieChartComponent) => {
 								<Legend key={indicator.name} color={indicator.color}>
 									<div>
 										{indicator.percent}
-										%
 									</div>
 									<span>{indicator.name}</span>
 								</Legend>
@@ -44,15 +45,14 @@ const PieChartComponent = ({ data } : IPieChartComponent) => {
 				<ResponsiveContainer width="100%" height="100%">
 					<PieChart width={400} height={400}>
 						<Pie
-							data={[]}
-							labelLine={false}
+							data={data}
 							dataKey="percent"
-							cx="50%"
-							cy="50%"
-							outerRadius={80}
-							fill="#8884d8"
 						>
-							oi
+							{
+								data.map((indicator) => (
+									<Cell key={indicator.name} fill={indicator.color} />
+								))
+							}
 						</Pie>
 					</PieChart>
 				</ResponsiveContainer>
