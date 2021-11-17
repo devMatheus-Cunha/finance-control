@@ -168,48 +168,58 @@ export const DashboardContainer = ({
 	}, [totalExpenses, totalGains]);
 
 	const historyData = useMemo(() => {
-		return listOfMonths.map((_, month) => {
-			let amountEntry = 0;
-			gains.forEach((gain) => {
-				const date = new Date(gain.date);
-				const gainMonth = date.getMonth();
-				const gainYear = date.getFullYear();
+		return listOfMonths
+			.map((_, month) => {
+				let amountEntry = 0;
+				gains.forEach((gain) => {
+					const date = new Date(gain.date);
+					const gainMonth = date.getMonth();
+					const gainYear = date.getFullYear();
 
-				if (gainMonth === month && gainYear === yearSelected) {
-					try {
-						amountEntry += Number(gain.amount);
-					} catch {
-						throw new Error(
-							"amountEntry is invalid. amountEntry must be valid number",
-						);
+					if (gainMonth === month && gainYear === yearSelected) {
+						try {
+							amountEntry += Number(gain.amount);
+						} catch {
+							throw new Error(
+								"amountEntry is invalid. amountEntry must be valid number",
+							);
+						}
 					}
-				}
-			});
+				});
 
-			let amountOutput = 0;
-			expenses.forEach((expenses) => {
-				const date = new Date(expenses.date);
-				const expensesMonth = date.getMonth();
-				const expensesYear = date.getFullYear();
+				let amountOutput = 0;
+				expenses.forEach((expenses) => {
+					const date = new Date(expenses.date);
+					const expensesMonth = date.getMonth();
+					const expensesYear = date.getFullYear();
 
-				if (expensesMonth === month && expensesYear === yearSelected) {
-					try {
-						amountOutput += Number(expenses.amount);
-					} catch {
-						throw new Error(
-							"amountOutput is invalid. amountOutput must be valid number",
-						);
+					if (expensesMonth === month && expensesYear === yearSelected) {
+						try {
+							amountOutput += Number(expenses.amount);
+						} catch {
+							throw new Error(
+								"amountOutput is invalid. amountOutput must be valid number",
+							);
+						}
 					}
-				}
-			});
+				});
 
-			return {
-				monthNumber: month,
-				month: listOfMonths[month].substr(0, 3),
-				amountEntry: Number(amountEntry.toFixed(2)),
-				amountOutput: Number(amountOutput.toFixed(2)),
-			}
-		});
+				return {
+					monthNumber: month,
+					month: listOfMonths[month].substr(0, 3),
+					amountEntry: Number(amountEntry.toFixed(2)),
+					amountOutput: Number(amountOutput.toFixed(2)),
+				};
+			})
+			.filter((item) => {
+				const currentMonth = new Date().getMonth();
+				const currentYear = new Date().getFullYear();
+
+				return (
+					(yearSelected === currentYear && item.monthNumber <= currentMonth)
+          || yearSelected < currentYear
+				);
+			});
 	}, [yearSelected]);
 
 	return (
