@@ -33,6 +33,7 @@ const PieChartComponent = ({ data } : IPieChartComponent) => {
 								<Legend key={indicator.name} color={indicator.color}>
 									<div>
 										{indicator.percent}
+										%
 									</div>
 									<span>{indicator.name}</span>
 								</Legend>

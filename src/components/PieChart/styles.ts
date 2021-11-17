@@ -59,13 +59,13 @@ export const Legend = styled.li<ILegendProps>`
   > div {
     background-color: ${({ color }) => color};
 
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 7px;
 
-    font-size: 17px;
+    font-size: 14.5px;
     text-align: center;
-    line-height: 40px;
+    line-height: 42px;
   }
 
   > span {
