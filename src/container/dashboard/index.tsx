@@ -6,6 +6,7 @@ import WalletBox from "../../components/WalletBox";
 import SelectInput from "../../components/SelectInput";
 import MessageBox from "../../components/MessageBox";
 import PieChartComponent from "../../components/PieChart";
+import HistoryBox from "../../components/HistoryBox";
 
 // utils
 import listOfMonths from "../../utils/months";
@@ -163,8 +164,53 @@ export const DashboardContainer = ({
 				percent: Number(percentExpenses.toFixed(1)),
 			},
 		];
-		return data
+		return data;
 	}, [totalExpenses, totalGains]);
+
+	const historyData = useMemo(() => {
+		return listOfMonths.map((_, month) => {
+			let amountEntry = 0;
+			gains.forEach((gain) => {
+				const date = new Date(gain.date);
+				const gainMonth = date.getMonth();
+				const gainYear = date.getFullYear();
+
+				if (gainMonth === month && gainYear === yearSelected) {
+					try {
+						amountEntry += Number(gain.amount);
+					} catch {
+						throw new Error(
+							"amountEntry is invalid. amountEntry must be valid number",
+						);
+					}
+				}
+			});
+
+			let amountOutput = 0;
+			expenses.forEach((expenses) => {
+				const date = new Date(expenses.date);
+				const expensesMonth = date.getMonth();
+				const expensesYear = date.getFullYear();
+
+				if (expensesMonth === month && expensesYear === yearSelected) {
+					try {
+						amountOutput += Number(expenses.amount);
+					} catch {
+						throw new Error(
+							"amountOutput is invalid. amountOutput must be valid number",
+						);
+					}
+				}
+			});
+
+			return {
+				monthNumber: month,
+				month: listOfMonths[month].substr(0, 3),
+				amountEntry: Number(amountEntry.toFixed(2)),
+				amountOutput: Number(amountOutput.toFixed(2)),
+			}
+		});
+	}, [yearSelected]);
 
 	return (
 		<Container>
@@ -207,6 +253,11 @@ export const DashboardContainer = ({
 					footerText={message.footerText}
 				/>
 				<PieChartComponent data={relationExpensesVersusGains} />
+				<HistoryBox
+					data={historyData}
+					lineColorAmoutEntry="#F7931B"
+					lineColorAmoutOutput="#E44C4E"
+				/>
 			</Content>
 		</Container>
 	);
