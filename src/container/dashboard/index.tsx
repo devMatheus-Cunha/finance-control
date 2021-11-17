@@ -207,8 +207,8 @@ export const DashboardContainer = ({
 				return {
 					monthNumber: month,
 					month: listOfMonths[month].substr(0, 3),
-					amountEntry: Number(amountEntry.toFixed(2)),
-					amountOutput: Number(amountOutput.toFixed(2)),
+					amountEntry: Number(amountEntry),
+					amountOutput: Number(amountOutput),
 				};
 			})
 			.filter((item) => {

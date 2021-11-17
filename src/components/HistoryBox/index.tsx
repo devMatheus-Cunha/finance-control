@@ -8,6 +8,9 @@ import {
 	Line,
 } from "recharts";
 
+// utils
+import { formatCurrency } from "../../utils/functions";
+
 // styles
 import {
 	Container, ChartContainer, Header, LegendContainer, Legend,
@@ -60,7 +63,7 @@ const HistoryBox = ({
 					>
 						<CartesianGrid strokeDasharray="3 3" stroke="#434d85" />
 						<XAxis dataKey="month" stroke="#cccc" />
-						<Tooltip />
+						<Tooltip formatter={(value: string) => formatCurrency(Number(value))} />
 						<Line
 							type="monotone"
 							dataKey="amountEntry"
