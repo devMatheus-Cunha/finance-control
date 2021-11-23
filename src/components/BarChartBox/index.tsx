@@ -7,7 +7,9 @@ import {
 import { formatCurrency } from "../../utils/functions";
 
 // styles
-import { Container, SideLeft, SideRight } from "./styles";
+import {
+	Container, LegendContainer, SideLeft, SideRight, Legend,
+} from "./styles";
 
 interface IBarChartProps {
   title: string;
@@ -24,6 +26,19 @@ const BarChartBox = ({ title, data }: IBarChartProps) => {
 		<Container>
 			<SideLeft>
 				<h2>{title}</h2>
+				<LegendContainer>
+					{
+						data.map((indicator) => (
+							<Legend key={indicator.name} color={indicator.color}>
+								<div>
+									{indicator.percent}
+									%
+								</div>
+								<span>{indicator.name}</span>
+							</Legend>
+						))
+					}
+				</LegendContainer>
 			</SideLeft>
 
 			<SideRight>
@@ -37,9 +52,6 @@ const BarChartBox = ({ title, data }: IBarChartProps) => {
 								/>
 							))}
 						</Bar>
-						<Tooltip
-							formatter={(value: string) => formatCurrency(Number(value))}
-						/>
 					</BarChart>
 				</ResponsiveContainer>
 			</SideRight>
