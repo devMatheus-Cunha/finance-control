@@ -7,10 +7,17 @@ export default [
 		date: "2021-10-10",
 	},
 	{
-		description: "Água",
+		description: "Chinelo",
 		amount: "75.55",
 		type: "saída",
-		frequency: "recorrente",
+		frequency: "eventual",
+		date: "2021-10-15",
+	},
+	{
+		description: "Mochila",
+		amount: "212.55",
+		type: "saída",
+		frequency: "eventual",
 		date: "2021-10-15",
 	},
 	{
@@ -33,6 +40,13 @@ export default [
 		type: "saída",
 		frequency: "recorrente",
 		date: "2019-09-23",
+	},
+	{
+		description: "Açai",
+		amount: "15.25",
+		type: "saída",
+		frequency: "eventual",
+		date: "2021-10-15",
 	},
 	{
 		description: "Lanche",
