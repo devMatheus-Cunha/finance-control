@@ -7,6 +7,7 @@ import SelectInput from "../../components/SelectInput";
 import MessageBox from "../../components/MessageBox";
 import PieChartComponent from "../../components/PieChart";
 import HistoryBox from "../../components/HistoryBox";
+import BarChartBox from "../../components/BarChartBox";
 
 // utils
 import listOfMonths from "../../utils/months";
@@ -301,6 +302,7 @@ export const DashboardContainer = ({
 					lineColorAmoutEntry="#F7931B"
 					lineColorAmoutOutput="#E44C4E"
 				/>
+				<BarChartBox />
 			</Content>
 		</Container>
 	);
