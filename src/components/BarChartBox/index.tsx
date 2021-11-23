@@ -44,7 +44,7 @@ const BarChartBox = ({ title, data }: IBarChartProps) => {
 			<SideRight>
 				<ResponsiveContainer>
 					<BarChart data={data}>
-						<Bar dataKey="amout">
+						<Bar dataKey="amout" name="Valor">
 							{data.map((indicator) => (
 								<Cell
 									key={indicator.name}
@@ -52,6 +52,10 @@ const BarChartBox = ({ title, data }: IBarChartProps) => {
 								/>
 							))}
 						</Bar>
+						<Tooltip
+							formatter={(value: string) => formatCurrency(Number(value))}
+							cursor={{ fill: "none" }}
+						/>
 					</BarChart>
 				</ResponsiveContainer>
 			</SideRight>
