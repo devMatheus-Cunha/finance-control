@@ -1,28 +1,28 @@
 import React, { useMemo, useState } from "react";
 
-// components
-import ContentHeader from "../../components/ContentHeader";
-import WalletBox from "../../components/WalletBox";
-import SelectInput from "../../components/SelectInput";
-import MessageBox from "../../components/MessageBox";
-import PieChartComponent from "../../components/PieChart";
-import HistoryBox from "../../components/HistoryBox";
+// images
+import emojiHappyImg from "../../assets/img/emoji-happy.svg";
+import emojiSadImg from "../../assets/img/emoji-sad.svg";
+import emojiGrinningImg from "../../assets/img/grinning.svg";
 import BarChartBox from "../../components/BarChartBox";
 
-// utils
-import listOfMonths from "../../utils/months";
+// components
+import ContentHeader from "../../components/ContentHeader";
+import HistoryBox from "../../components/HistoryBox";
+import MessageBox from "../../components/MessageBox";
+import PieChartComponent from "../../components/PieChart";
+import SelectInput from "../../components/SelectInput";
+import WalletBox from "../../components/WalletBox";
 
 // repositories
 import expenses from "../../repositories/expenses";
 import gains from "../../repositories/gains";
 
+// utils
+import listOfMonths from "../../utils/months";
+
 // interfaces
 import { ITransactionsContainer } from "../transactions/interface";
-
-// images
-import emojiHappyImg from "../../assets/img/emoji-happy.svg";
-import emojiSadImg from "../../assets/img/emoji-sad.svg";
-import emojiGrinningImg from "../../assets/img/grinning.svg";
 
 // styles
 import { Container, Content } from "./styles";
@@ -236,9 +236,53 @@ export const DashboardContainer = ({
 				return month === monthSelected && year === yearSelected;
 			})
 			.forEach((expense) => {
-				if (expense.frequency === "recorrente") { amoutRecurrent += Number(expense.amount); }
+				if (expense.frequency === "recorrente") {
+					amoutRecurrent += Number(expense.amount);
+				}
 
-				if (expense.frequency === "eventual") { amoutEventual += Number(expense.amount); }
+				if (expense.frequency === "eventual") {
+					amoutEventual += Number(expense.amount);
+				}
+			});
+
+		const total = amoutRecurrent + amoutEventual;
+
+		return [
+			{
+				name: "Recorrentes",
+				amout: amoutRecurrent,
+				percent: Number(((amoutRecurrent / total) * 100).toFixed(1)),
+				color: "#F7931B",
+			},
+			{
+				name: "Eventuais",
+				amout: amoutEventual,
+				percent: Number(((amoutEventual / total) * 100).toFixed(1)),
+				color: "#E44C4E",
+			},
+		];
+	}, [monthSelected, yearSelected]);
+
+	const gainsRecurrentAndEventual = useMemo(() => {
+		let amoutRecurrent = 0;
+		let amoutEventual = 0;
+
+		gains
+			.filter((gains) => {
+				const date = new Date(gains.date);
+				const month = date.getMonth() + 1;
+				const year = date.getFullYear();
+
+				return month === monthSelected && year === yearSelected;
+			})
+			.forEach((gains) => {
+				if (gains.frequency === "recorrente") {
+					amoutRecurrent += Number(gains.amount);
+				}
+
+				if (gains.frequency === "eventual") {
+					amoutEventual += Number(gains.amount);
+				}
 			});
 
 		const total = amoutRecurrent + amoutEventual;
@@ -306,6 +350,7 @@ export const DashboardContainer = ({
 					lineColorAmoutOutput="#E44C4E"
 				/>
 				<BarChartBox data={expenseRecurrentAndEventual} title="Saídas" />
+				<BarChartBox data={gainsRecurrentAndEventual} title="Entradas" />
 			</Content>
 		</Container>
 	);
