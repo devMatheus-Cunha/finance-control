@@ -137,13 +137,21 @@ export const DashboardContainer = ({
 				footerText: "Continue assim. Considere investir o seu saldo.",
 			};
 		}
+		if (totalExpenses === 0 && totalGains === 0) {
+			return {
+				title: "Ops!",
+				description: "Neste mês, não a registros de entradas e saídas",
+				icon: emojiGrinningImg,
+				footerText: "Parece que você não fez nenhum registro no mês e ano selecionado.",
+			};
+		}
 		return {
 			title: "Ufaaa!",
 			description: "Neste mês, você gastou a mesma coisa que ganhou.",
 			icon: emojiGrinningImg,
 			footerText: "Tenha cuidado. No proximo mês tente poupar seu dinheiro",
 		};
-	}, [totalBalance]);
+	}, [totalBalance, totalExpenses, totalGains]);
 
 	const relationExpensesVersusGains = useMemo(() => {
 		const total = totalGains + totalExpenses;
