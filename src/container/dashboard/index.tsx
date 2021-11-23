@@ -168,49 +168,48 @@ export const DashboardContainer = ({
 	}, [totalExpenses, totalGains]);
 
 	const historyData = useMemo(() => {
-		return listOfMonths
-			.map((_, month) => {
-				let amountEntry = 0;
-				gains.forEach((gain) => {
-					const date = new Date(gain.date);
-					const gainMonth = date.getMonth();
-					const gainYear = date.getFullYear();
+		return listOfMonths.map((_, month) => {
+			let amountEntry = 0;
+			gains.forEach((gain) => {
+				const date = new Date(gain.date);
+				const gainMonth = date.getMonth();
+				const gainYear = date.getFullYear();
 
-					if (gainMonth === month && gainYear === yearSelected) {
-						try {
-							amountEntry += Number(gain.amount);
-						} catch {
-							throw new Error(
-								"amountEntry is invalid. amountEntry must be valid number",
-							);
-						}
+				if (gainMonth === month && gainYear === yearSelected) {
+					try {
+						amountEntry += Number(gain.amount);
+					} catch {
+						throw new Error(
+							"amountEntry is invalid. amountEntry must be valid number",
+						);
 					}
-				});
+				}
+			});
 
-				let amountOutput = 0;
-				expenses.forEach((expenses) => {
-					const date = new Date(expenses.date);
-					const expensesMonth = date.getMonth();
-					const expensesYear = date.getFullYear();
+			let amountOutput = 0;
+			expenses.forEach((expenses) => {
+				const date = new Date(expenses.date);
+				const expensesMonth = date.getMonth();
+				const expensesYear = date.getFullYear();
 
-					if (expensesMonth === month && expensesYear === yearSelected) {
-						try {
-							amountOutput += Number(expenses.amount);
-						} catch {
-							throw new Error(
-								"amountOutput is invalid. amountOutput must be valid number",
-							);
-						}
+				if (expensesMonth === month && expensesYear === yearSelected) {
+					try {
+						amountOutput += Number(expenses.amount);
+					} catch {
+						throw new Error(
+							"amountOutput is invalid. amountOutput must be valid number",
+						);
 					}
-				});
+				}
+			});
 
-				return {
-					monthNumber: month,
-					month: listOfMonths[month].substr(0, 3),
-					amountEntry: Number(amountEntry),
-					amountOutput: Number(amountOutput),
-				};
-			})
+			return {
+				monthNumber: month,
+				month: listOfMonths[month].substr(0, 3),
+				amountEntry: Number(amountEntry),
+				amountOutput: Number(amountOutput),
+			};
+		})
 			.filter((item) => {
 				const currentMonth = new Date().getMonth();
 				const currentYear = new Date().getFullYear();
@@ -221,6 +220,40 @@ export const DashboardContainer = ({
 				);
 			});
 	}, [yearSelected]);
+
+	const expenseRecurrentAndEventual = useMemo(() => {
+		let amoutRecurrent = 0
+		let amoutEventual = 0
+
+		expenses.filter((expense) => {
+			const date = new Date(expense.date);
+			const month = date.getMonth() + 1;
+			const year = date.getFullYear();
+
+			return month === monthSelected && year === yearSelected
+		}).forEach((expense) => {
+			if (expense.frequency === "recorrente") amoutRecurrent += Number(expense.amount)
+
+			if (expense.frequency === "eventual") amoutEventual += Number(expense.amount)
+		})
+
+		const total = amoutRecurrent + amoutEventual
+
+		return [
+			{
+				name: "Recorrentes",
+				amout: amoutRecurrent,
+				percent: Number(((amoutRecurrent / total) * 100).toFixed(1)),
+				color: "#F7931B",
+			},
+			{
+				name: "Eventuais",
+				amout: amoutEventual,
+				percent: Number(((amoutEventual / total) * 100).toFixed(1)),
+				color: "#E44C4E",
+			},
+		]
+	}, [monthSelected, yearSelected])
 
 	return (
 		<Container>
