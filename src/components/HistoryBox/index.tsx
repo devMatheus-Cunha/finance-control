@@ -37,15 +37,11 @@ const HistoryBox = ({
 				<h2>Histórico de saldo</h2>
 				<LegendContainer>
 					<Legend color="#F7931B">
-						<div>
-							30%
-						</div>
+						<div />
 						<span>Entradas</span>
 					</Legend>
 					<Legend color="#E44C4E">
-						<div>
-							70%
-						</div>
+						<div />
 						<span>Saídas</span>
 					</Legend>
 				</LegendContainer>
