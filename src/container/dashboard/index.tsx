@@ -156,13 +156,13 @@ export const DashboardContainer = ({
 				name: "Entradas",
 				totalValue: totalGains,
 				color: "#F7931B",
-				percent: Number(percentGains.toFixed(1)),
+				percent: Number(percentGains.toFixed(1)) || 0,
 			},
 			{
 				name: "Saídas",
 				totalValue: totalExpenses,
 				color: "#E44C4E",
-				percent: Number(percentExpenses.toFixed(1)),
+				percent: Number(percentExpenses.toFixed(1)) || 0,
 			},
 		];
 		return data;
@@ -246,18 +246,21 @@ export const DashboardContainer = ({
 			});
 
 		const total = amoutRecurrent + amoutEventual;
-
+		const recurrentPercente = Number(
+			((amoutRecurrent / total) * 100).toFixed(1),
+		);
+		const eventualPercente = Number(((amoutEventual / total) * 100).toFixed(1));
 		return [
 			{
 				name: "Recorrentes",
 				amout: amoutRecurrent,
-				percent: Number(((amoutRecurrent / total) * 100).toFixed(1)),
+				percent: recurrentPercente || 0,
 				color: "#F7931B",
 			},
 			{
 				name: "Eventuais",
 				amout: amoutEventual,
-				percent: Number(((amoutEventual / total) * 100).toFixed(1)),
+				percent: eventualPercente || 0,
 				color: "#E44C4E",
 			},
 		];
@@ -286,18 +289,22 @@ export const DashboardContainer = ({
 			});
 
 		const total = amoutRecurrent + amoutEventual;
+		const recurrentPercente = Number(
+			((amoutRecurrent / total) * 100).toFixed(1),
+		);
+		const eventualPercente = Number(((amoutEventual / total) * 100).toFixed(1));
 
 		return [
 			{
 				name: "Recorrentes",
 				amout: amoutRecurrent,
-				percent: Number(((amoutRecurrent / total) * 100).toFixed(1)),
+				percent: recurrentPercente || 0,
 				color: "#F7931B",
 			},
 			{
 				name: "Eventuais",
 				amout: amoutEventual,
-				percent: Number(((amoutEventual / total) * 100).toFixed(1)),
+				percent: eventualPercente || 0,
 				color: "#E44C4E",
 			},
 		];
