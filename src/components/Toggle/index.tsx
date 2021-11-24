@@ -1,26 +1,22 @@
-import React from "react";
-
-// hooks
-import { useTheme } from "../../hooks/useTheme";
-
 // styles
 import { Container, ToggleLabel, ToggleSelector } from "./styles";
 
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-const Toggle = () => {
-	const { toggleTheme } = useTheme();
+const Toggle = ({
+	labeLeft, labelRight, checked, onChange,
+}: any) => {
 	return (
 		<Container>
-			<ToggleLabel>Dark</ToggleLabel>
+			<ToggleLabel>{labeLeft}</ToggleLabel>
 			<ToggleSelector
 				uncheckedIcon={false}
 				checkedIcon={false}
-				checked={false}
-				onChange={() => toggleTheme()}
+				checked={checked}
+				onChange={onChange}
 			/>
-			<ToggleLabel>Light</ToggleLabel>
+			<ToggleLabel>{labelRight}</ToggleLabel>
 		</Container>
 	);
 };
