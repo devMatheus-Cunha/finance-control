@@ -16,10 +16,10 @@ import {
 
 const MainHeader: React.FC = () => {
 	// hooks
-	const { toggleTheme } = useTheme();
+	const { theme, toggleTheme } = useTheme();
 
 	// state
-	const [darkTheme, setDarkTheme] = useState<boolean>(false);
+	const [darkTheme, setDarkTheme] = useState<boolean>(() => (theme.title === "dark"));
 
 	const emoji = useMemo(() => {
 		const indice = Math.floor(Math.random() * emojis.length);
@@ -35,8 +35,8 @@ const MainHeader: React.FC = () => {
 	return (
 		<Container>
 			<Toggle
-				labeLeft="Dark"
-				labelRight="Light"
+				labeLeft="Light"
+				labelRight="Dark"
 				checked={darkTheme}
 				onChange={handleChangeTheme}
 			/>
