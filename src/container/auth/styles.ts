@@ -38,7 +38,9 @@ export const Form = styled.form`
 `;
 
 export const FormTitle = styled.h1`
+margin-bottom: 35px;
   color: ${({ theme }) => theme.colors.white};
+
   &::after {
     content: "";
     display: block;

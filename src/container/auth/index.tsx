@@ -5,6 +5,7 @@ import logoImg from "../../assets/img/logo.svg";
 
 // components
 import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 // styles
 import {
@@ -26,7 +27,7 @@ export const Auth: React.FC = () => {
 				<Input type="email" required placeholder="e-mail" />
 				<Input type="password" required placeholder="senha" />
 
-				<button type="submit">Acessar</button>
+				<Button type="submit">Acessar</Button>
 			</Form>
 		</Container>
 	);
