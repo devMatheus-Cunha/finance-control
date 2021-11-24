@@ -19,7 +19,7 @@ const MainHeader: React.FC = () => {
 	const { toggleTheme } = useTheme();
 
 	// state
-	const [darkTheme, setDarkTheme] = useState<boolean>();
+	const [darkTheme, setDarkTheme] = useState<boolean>(false);
 
 	const emoji = useMemo(() => {
 		const indice = Math.floor(Math.random() * emojis.length);

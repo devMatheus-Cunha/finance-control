@@ -1,12 +1,20 @@
 // styles
 import { Container, ToggleLabel, ToggleSelector } from "./styles";
 
+// interface
+interface IToglleProps {
+  labeLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange: () => void;
+}
+
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
 const Toggle = ({
 	labeLeft, labelRight, checked, onChange,
-}: any) => {
+}: IToglleProps) => {
 	return (
 		<Container>
 			<ToggleLabel>{labeLeft}</ToggleLabel>
