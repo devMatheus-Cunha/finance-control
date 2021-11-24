@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 
 // themes
-import dark from "../assets/styles/themes/dark";
-import light from "../assets/styles/themes/light";
+import dark from "../../assets/styles/themes/dark";
+import light from "../../assets/styles/themes/light";
 
 // interface
 import { ITheme, IThemeContext, IThemeProvider } from "./interface";

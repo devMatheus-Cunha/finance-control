@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
 // context
-import { IThemeContext } from "../context/interface";
 import { ThemeContext } from "../context/theme";
+import { IThemeContext } from "../context/theme/interface";
 
 // -------------------------------------------------
 // Export Function
