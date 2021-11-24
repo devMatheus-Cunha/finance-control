@@ -10,21 +10,17 @@ import { Grid } from "./styles";
 
 // interfaces
 interface ILayout {
-  children : ReactNode
+  children: ReactNode;
 }
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-const Layout = ({ children }: ILayout) => {
-	return (
-		<Grid>
-			<MainHeader />
-			<Aside />
-			<Content>
-				{children}
-			</Content>
-		</Grid>
-	);
-}
+const Layout = ({ children }: ILayout) => (
+	<Grid>
+		<MainHeader />
+		<Aside />
+		<Content>{children}</Content>
+	</Grid>
+);
 
 export default Layout;

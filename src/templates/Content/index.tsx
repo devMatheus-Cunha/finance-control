@@ -4,13 +4,11 @@ import React, { ReactNode } from "react";
 import { Container } from "./styles";
 
 type ContentProps = {
-	children: ReactNode
-}
-
-const Content = ({ children }: ContentProps) => {
-	return (
-		<Container>{children}</Container>
-	);
+  children: ReactNode;
 };
+
+const Content = ({ children }: ContentProps) => (
+	<Container>{children}</Container>
+);
 
 export default Content;

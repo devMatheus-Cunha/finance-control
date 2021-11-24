@@ -21,42 +21,36 @@ import {
 	Title,
 } from "./styles";
 
-const Aside: React.FC = () => {
-	return (
-		<Container>
-			<Header>
-				<LogoImg src={logoImg} alt="Logo Finance Control" />
-				<Title>Finance Control</Title>
-			</Header>
-			<MenuContainer>
+const Aside: React.FC = () => (
+	<Container>
+		<Header>
+			<LogoImg src={logoImg} alt="Logo Finance Control" />
+			<Title>Finance Control</Title>
+		</Header>
+		<MenuContainer>
+			<MenuItemLink href="/dashboard">
+				<MdDashboard />
+				Dashboard
+			</MenuItemLink>
 
-				<MenuItemLink href="/dashboard">
-					<MdDashboard />
-					Dashboard
-				</MenuItemLink>
+			<MenuItemLink href="#">Novo registro</MenuItemLink>
 
-				<MenuItemLink href="#">
+			<MenuItemLink href="/transactions/entry-balance">
+				<MdArrowUpward />
+				Entradas
+			</MenuItemLink>
 
-					Novo registro
-				</MenuItemLink>
+			<MenuItemLink href="/transactions/exit-balance">
+				<MdArrowDownward />
+				Saídas
+			</MenuItemLink>
 
-				<MenuItemLink href="/transactions/entry-balance">
-					<MdArrowUpward />
-					Entradas
-				</MenuItemLink>
-
-				<MenuItemLink href="/transactions/exit-balance">
-					<MdArrowDownward />
-					Saídas
-				</MenuItemLink>
-
-				<MenuItemLink href="#">
-					<MdExitToApp />
-					Sair
-				</MenuItemLink>
-			</MenuContainer>
-		</Container>
-	);
-};
+			<MenuItemLink href="#">
+				<MdExitToApp />
+				Sair
+			</MenuItemLink>
+		</MenuContainer>
+	</Container>
+);
 
 export default Aside;
