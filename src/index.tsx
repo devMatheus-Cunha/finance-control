@@ -6,12 +6,15 @@ import App from "./App";
 
 // context
 import { ThemeProvider } from "./context/theme";
+import { AuthProvider } from "./context/auth";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ThemeProvider>
-			<App />
-		</ThemeProvider>
+		<AuthProvider>
+			<ThemeProvider>
+				<App />
+			</ThemeProvider>
+		</AuthProvider>
 	</React.StrictMode>,
 	document.getElementById("root"),
 );
