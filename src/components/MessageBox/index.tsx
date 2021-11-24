@@ -16,23 +16,20 @@ const MessageBox = ({
 	icon,
 	description,
 	footerText,
+}: IMessageBoxProps) => (
+	<Container>
+		<header>
+			<h1>
+				{title}
+				{" "}
+				<img src={icon} alt={title} />
+				{" "}
+			</h1>
+			<p>{description}</p>
+		</header>
 
-}: IMessageBoxProps) => {
-	return (
-		<Container>
-			<header>
-				<h1>
-					{title}
-					{" "}
-					<img src={icon} alt={title} />
-					{" "}
-				</h1>
-				<p>{description}</p>
-			</header>
-
-			<footer>{footerText}</footer>
-		</Container>
-	);
-};
+		<footer>{footerText}</footer>
+	</Container>
+);
 
 export default MessageBox;
