@@ -1,13 +1,20 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-// layout
-import AuthRoutes from "./auth.routes";
+// hooks
+import { useAuth } from "../hooks/useAuth";
 
-const Routes = () => (
-	<BrowserRouter>
-		<AuthRoutes />
-	</BrowserRouter>
-);
+// routes
+import AuthRoutes from "./auth.routes";
+import AppRoutes from "./app.routes";
+
+const Routes = () => {
+	const { logged } = useAuth()
+	return (
+		<BrowserRouter>
+			{logged ? <AppRoutes /> :	<AuthRoutes />}
+		</BrowserRouter>
+	);
+};
 
 export default Routes;

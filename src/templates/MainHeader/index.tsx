@@ -14,12 +14,14 @@ import {
 	Container, Profile, UserName, Welcome,
 } from "./styles";
 
-const MainHeader  = () => {
+const MainHeader = () => {
 	// hooks
 	const { theme, toggleTheme } = useTheme();
 
 	// state
-	const [darkTheme, setDarkTheme] = useState<boolean>(() => (theme.title === "dark"));
+	const [darkTheme, setDarkTheme] = useState<boolean>(
+		() => theme.title === "dark",
+	);
 
 	const emoji = useMemo(() => {
 		const indice = Math.floor(Math.random() * emojis.length);

@@ -21,7 +21,7 @@ import {
 	Title,
 } from "./styles";
 
-const Aside  = () => (
+const Aside = () => (
 	<Container>
 		<Header>
 			<LogoImg src={logoImg} alt="Logo Finance Control" />

@@ -13,7 +13,7 @@ import Transactions from "../view/transactions";
 const AppRoutes = () => (
 	<Layout>
 		<Switch>
-			<Route path="/dashboard" component={Dashboard} exact />
+			<Route path="/" component={Dashboard} exact />
 			<Route path="/transactions/:type" component={Transactions} exact />
 		</Switch>
 	</Layout>
