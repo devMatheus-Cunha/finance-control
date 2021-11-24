@@ -10,7 +10,7 @@ import Routes from "./routes";
 // global styles
 import CreateGlobalStyle from "./assets/styles/globalStyles";
 
-const App: React.FC = () => {
+const App = () => {
 	const { theme } = useTheme();
 	return (
 		<ThemeProvider theme={theme}>

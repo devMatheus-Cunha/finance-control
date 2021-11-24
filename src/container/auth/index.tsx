@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // hooks
 import { useAuth } from "../../hooks/useAuth";
@@ -21,9 +21,10 @@ import {
 export const Auth = () => {
 	// hooks
 	const { signIn } = useAuth();
-	
-	// functions
-	const handleSignIn = () => {};
+
+	// states
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
 
 	return (
 		<Container>
@@ -31,10 +32,20 @@ export const Auth = () => {
 				<img src={logoImg} alt="Finance Control" />
 				<h2>Finance Control</h2>
 			</Logo>
-			<Form onSubmit={() => null}>
+			<Form onSubmit={() => signIn(email, password)}>
 				<FormTitle>Entrar</FormTitle>
-				<Input type="email" required placeholder="e-mail" />
-				<Input type="password" required placeholder="senha" />
+				<Input
+					type="email"
+					required
+					placeholder="e-mail"
+					onChange={(event) => setEmail(event.target.value)}
+				/>
+				<Input
+					type="password"
+					required
+					placeholder="senha"
+					onChange={(event) => setPassword(event.target.value)}
+				/>
 
 				<Button type="submit">Acessar</Button>
 			</Form>
