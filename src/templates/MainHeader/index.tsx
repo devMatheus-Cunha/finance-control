@@ -14,7 +14,7 @@ import {
 	Container, Profile, UserName, Welcome,
 } from "./styles";
 
-const MainHeader: React.FC = () => {
+const MainHeader  = () => {
 	// hooks
 	const { theme, toggleTheme } = useTheme();
 

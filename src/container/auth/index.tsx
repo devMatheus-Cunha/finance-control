@@ -1,5 +1,8 @@
 import React from "react";
 
+// hooks
+import { useAuth } from "../../hooks/useAuth";
+
 // images
 import logoImg from "../../assets/img/logo.svg";
 
@@ -15,7 +18,13 @@ import {
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-export const Auth: React.FC = () => {
+export const Auth = () => {
+	// hooks
+	const { signIn } = useAuth();
+	
+	// functions
+	const handleSignIn = () => {};
+
 	return (
 		<Container>
 			<Logo>

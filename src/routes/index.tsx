@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 // layout
 import AuthRoutes from "./auth.routes";
 
-const Routes: React.FC = () => (
+const Routes = () => (
 	<BrowserRouter>
 		<AuthRoutes />
 	</BrowserRouter>

@@ -10,7 +10,7 @@ import Transactions from "../view/transactions";
 
 // import { Container } from './styles';
 
-const AppRoutes: React.FC = () => (
+const AppRoutes = () => (
 	<Layout>
 		<Switch>
 			<Route path="/dashboard" component={Dashboard} exact />

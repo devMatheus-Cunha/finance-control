@@ -7,7 +7,7 @@ import { IAuthContext } from "../context/auth/interface";
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-export function useTheme(): IAuthContext {
+export function useAuth(): IAuthContext {
 	const context = useContext(AuthContext);
 
 	return context;

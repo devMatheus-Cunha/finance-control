@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom"
 // view
 import Auth from "../view/auth";
 
-const AuthRoutes: React.FC = () => (
+const AuthRoutes = () => (
 	<Switch>
 		<Route path="/" component={Auth} exact />
 	</Switch>
