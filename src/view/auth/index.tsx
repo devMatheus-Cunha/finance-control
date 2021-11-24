@@ -6,10 +6,6 @@ import { Auth } from "../../container/auth";
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-const auth = () => {
-	return (
-		<Auth />
-	);
-}
+const auth = () => <Auth />;
 
 export default auth;
