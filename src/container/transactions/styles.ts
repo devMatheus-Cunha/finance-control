@@ -41,7 +41,7 @@ export const Button = styled.button<PropsButton>`
     border-bottom: 10px solid
       ${(props) =>
 		(props.eventual
-			? props.theme.colors.warning
-			: props.theme.colors.success)};
+			? "#FF6961"
+			: "#4E41F0")};
   }
 `;
