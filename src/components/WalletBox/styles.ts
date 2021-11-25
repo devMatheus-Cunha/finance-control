@@ -67,9 +67,10 @@ export const Container = styled.div<IContainerProps>`
         width: auto;
         font-size: 24px;
       }
+
       strong::after {
         content: "";
-        margin-left:2px;
+        margin-left: 2px;
       }
     }
   }
