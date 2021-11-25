@@ -21,18 +21,13 @@ import gains from "../../repositories/gains";
 // utils
 import listOfMonths from "../../utils/months";
 
-// interfaces
-import { ITransactionsContainer } from "../transactions/interface";
-
 // styles
 import { Container, Content } from "./styles";
 
 // -------------------------------------------------
 // Export Function
 // -------------------------------------------------
-export const DashboardContainer = ({
-	type: movimentType,
-}: ITransactionsContainer) => {
+export const DashboardContainer = () => {
 	// states
 	const [monthSelected, setMonthSelected] = useState<number>(
 		new Date().getMonth(),
