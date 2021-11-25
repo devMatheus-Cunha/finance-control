@@ -41,10 +41,13 @@ const WalletBox = ({
 		<Container color={color}>
 			<span>{title}</span>
 			<h1>
+				<strong>
+					R$
+					{" "}
+				</strong>
 				<CountUp
 					start={0}
 					end={amount}
-					prefix="R$ "
 					separator="."
 					duration={1.5}
 					decimal=","

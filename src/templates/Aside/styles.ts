@@ -42,23 +42,23 @@ export const MenuItemLink = styled.a`
 
   transition: opacity 0.3s;
   margin: 7px 0;
-  
-  &:hover{
-    opacity: .7;
+
+  &:hover {
+    opacity: 0.7;
   }
 
-  > svg{
+  > svg {
     font-size: 18px;
   }
 `;
 
 export const MenuItemButton = styled.button`
-  color: ${(props) => props.theme.colors.info};
+  color: ${({ theme }) => theme.colors.info};
   background-color: transparent;
 
   text-decoration: none;
   border: none;
-  
+
   display: flex;
   align-items: center;
   gap: 5px;
@@ -67,12 +67,12 @@ export const MenuItemButton = styled.button`
   margin: 7px 0;
 
   font-size: 16px;
-  
-  &:hover{
-    opacity: .7;
+
+  &:hover {
+    opacity: 0.7;
   }
 
-  > svg{
+  > svg {
     font-size: 18px;
   }
 `;
