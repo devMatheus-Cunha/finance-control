@@ -30,6 +30,10 @@ export const Container = styled.div`
     > header {
       font-size: 24px;
 
+      > h1 {
+        font-size: 27px;
+      }
+
       img {
         height: 20px;
         width: 20px;
@@ -45,7 +49,7 @@ export const Container = styled.div`
   @media (max-width: 420px) {
     width: 100%;
     height: auto;
-     
+
     > header p {
       margin-bottom: 15px;
     }
