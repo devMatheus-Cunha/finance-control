@@ -1,8 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
 
-// components
-import Toggle from "../../components/Toggle";
-
 // hooks
 import { useTheme } from "../../hooks/useTheme";
 
@@ -11,7 +8,7 @@ import emojis from "../../utils/emojis";
 
 // styles
 import {
-	Container, Profile, UserName, Welcome,
+	Container, Profile, UserName, Welcome, Toggle,
 } from "./styles";
 
 const MainHeader = () => {
