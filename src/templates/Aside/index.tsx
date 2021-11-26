@@ -30,7 +30,7 @@ const Aside = () => {
 	const { signOut } = useAuth()
 
 	return (
-		<Container>
+		<Container menuIsOpen={false}>
 			<Header>
 				<LogoImg src={logoImg} alt="Logo Finance Control" />
 				<Title>Finance Control</Title>
