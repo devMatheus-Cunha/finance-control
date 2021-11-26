@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // icons
 import {
@@ -6,6 +6,8 @@ import {
 	MdArrowDownward,
 	MdArrowUpward,
 	MdExitToApp,
+	MdClose,
+	MdMenu,
 } from "react-icons/md";
 
 // hooks
@@ -23,20 +25,33 @@ import {
 	MenuItemLink,
 	Title,
 	MenuItemButton,
+	ToggleMenu,
 } from "./styles";
 
 const Aside = () => {
 	// hooks
-	const { signOut } = useAuth()
+	const { signOut } = useAuth();
+
+	// states
+	const [toggleMenuIsOpened, setToggleMenuIsOpened] = useState(false);
+
+	// functions
+	const handleToggleMenu = () => {
+		setToggleMenuIsOpened(!toggleMenuIsOpened);
+	};
 
 	return (
-		<Container menuIsOpen={false}>
+		<Container menuIsOpen={toggleMenuIsOpened}>
 			<Header>
+				<ToggleMenu onClick={handleToggleMenu} type="button">
+					{toggleMenuIsOpened ? <MdClose /> : <MdMenu />}
+				</ToggleMenu>
+
 				<LogoImg src={logoImg} alt="Logo Finance Control" />
 				<Title>Finance Control</Title>
 			</Header>
 			<MenuContainer>
-				<MenuItemLink href="/dashboard">
+				<MenuItemLink href="/">
 					<MdDashboard />
 					Dashboard
 				</MenuItemLink>
