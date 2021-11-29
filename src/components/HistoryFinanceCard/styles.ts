@@ -21,7 +21,7 @@ export const Container = styled.li`
   justify-content: space-between;
   align-items: center;
 
-  animation: ${animate} .5s;
+  animation: ${animate} .5s ease;
 
   cursor: pointer;
 

@@ -70,8 +70,6 @@ const Aside = () => {
 					Dashboard
 				</MenuItemLink>
 
-				<MenuItemLink href="#">Novo registro</MenuItemLink>
-
 				<MenuItemLink href="/transactions/entry-balance">
 					<MdArrowUpward />
 					Entradas
