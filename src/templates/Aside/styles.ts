@@ -4,6 +4,10 @@ interface IContainerProps {
   menuIsOpen?: boolean;
 }
 
+interface IThemeToggleFooter {
+  menuIsOpen: boolean;
+}
+
 export const Container = styled.div<IContainerProps>`
   grid-area: AS;
 
@@ -121,9 +125,9 @@ export const ToggleMenu = styled.button`
     border-radius: 5px;
     font-size: 22px;
     background-color: ${({ theme }) => theme.colors.warning};
-    
+
     transition: opacity 0.3s;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,5 +140,15 @@ export const ToggleMenu = styled.button`
       width: 25px;
       height: 25px;
     }
+  }
+`;
+
+export const ThemeToggleFooter = styled.footer<IThemeToggleFooter>`
+  display: none;
+  position: absolute;
+  bottom: 30px;
+
+  @media (max-width: 470px) {
+    display: ${({ menuIsOpen }) => (menuIsOpen ? "flex" : "none")};
   }
 `;
