@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const animate = keyframes`
+  0% {
+    transform: translateX(100px)
+  }
+  100% {
+    transform: translateX(0px);
+  }
+`;
 
 export const Container = styled.li`
   background-color: ${({ theme }) => theme.colors.tertiary};
@@ -11,6 +20,8 @@ export const Container = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  animation: ${animate} .5s;
 
   cursor: pointer;
 

@@ -1,8 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface ILegendProps {
   color: string;
 }
+
+const animate = keyframes`
+  0% {
+    transform: translateX(100px)
+  }
+  100% {
+    transform: translateX(0px);
+  }
+`;
 
 export const Container = styled.div`
   width: 48%;
@@ -11,6 +20,9 @@ export const Container = styled.div`
   display: flex;
 
   margin: 10px 0;
+
+  animation: ${animate} .5s;
+
 
   background-color: ${({ theme }) => theme.colors.tertiary};
   color: ${({ theme }) => theme.colors.white};
@@ -28,6 +40,7 @@ export const Container = styled.div`
 export const SideLeft = styled.aside`
   padding: 30px 20px;
   flex: 1;
+
 
   h2 {
     margin-bottom: 10px;
