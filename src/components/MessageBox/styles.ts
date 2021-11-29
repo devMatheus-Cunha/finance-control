@@ -1,13 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const animate = keyframes`
+  0% {
+    transform: translateX(-100px)
+  }
+  100% {
+    transform: translateX(0px);
+  }
+`;
 
 export const Container = styled.div`
   width: 48%;
   height: 260px;
+  transform: translateX();
 
   background: ${({ theme }) => theme.colors.tertiary};
   color: ${({ theme }) => theme.colors.white};
 
   border-radius: 7px;
+
+  animation: ${animate} .5s;
 
   margin: 10px 0;
   padding: 30px 20px;
