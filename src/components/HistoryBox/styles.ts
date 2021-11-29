@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const animate = keyframes`
+  0% {
+    transform: translateY(100px)
+  }
+  100% {
+    transform: translateX(0px);
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -8,6 +17,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 340px;
+
+  animation: ${animate} .5s;
 
   border-radius: 7px;
   margin: 10px 0;
